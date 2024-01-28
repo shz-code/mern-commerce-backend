@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.tslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+  "css.lint.unknownAtRules": "ignore",
+  "cSpell.words": ["Formik", "Ninish", "reduxjs", "tailwindcss"]
+}
