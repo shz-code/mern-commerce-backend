@@ -5,6 +5,7 @@ const cors = require("cors");
 const app = express();
 
 const userRouter = require("./routers/userRouter");
+const categoryRouter = require("./routers/categoryRouter");
 
 app.use(cors());
 app.use(express.json());
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", userRouter);
+app.use("/api/category", categoryRouter);
 
 // Global Error collector
 app.use((err, req, res, next) => {
