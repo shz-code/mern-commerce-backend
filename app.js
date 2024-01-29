@@ -6,6 +6,7 @@ const app = express();
 
 const userRouter = require("./routers/userRouter");
 const categoryRouter = require("./routers/categoryRouter");
+const productRouter = require("./routers/productRouter");
 
 app.use(cors());
 app.use(express.json());
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/user", userRouter);
 app.use("/api/category", categoryRouter);
+app.use("/api/product", productRouter);
 
 // Global Error collector
 app.use((err, req, res, next) => {

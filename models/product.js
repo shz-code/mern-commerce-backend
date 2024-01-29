@@ -22,13 +22,13 @@ const productCategory = Schema(
 
 const validate = (product) => {
   const schema = joi.object({
-    name: joi.max(255).required(),
+    name: joi.string().max(255).required(),
     description: joi.string().max(2000),
     price: joi.number().required(),
     quantity: joi.number().required(),
     category: joi.string().required(),
   });
-  return schema.validate(category);
+  return schema.validate(product);
 };
 
 module.exports.Product = model("Product", productCategory);
