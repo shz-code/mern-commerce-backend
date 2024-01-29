@@ -7,13 +7,13 @@ module.exports.createProduct = async (req, res) => {
   let form = formidable({ keepExtensions: true, uploadDir: `./uploads` });
 
   form.parse(req, (err, fields, files) => {
-    const data = {
-      name: fields.name[0],
-      description: fields.description[0],
-      price: fields.price[0],
-      quantity: fields.quantity[0],
-      category: fields.category[0],
-    };
+    // Turn array values to string
+    const data = {};
+    for (const key in fields) {
+      if (fields.hasOwnProperty(key)) {
+        data[key] = fields[key].join("");
+      }
+    }
     if (err) return res.status(400).send("Something went wrong!!!");
 
     const { error } = validate(data);
@@ -87,5 +87,43 @@ module.exports.updateProduct = async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (!product) return res.status(400).send("Product not found");
 
-  return res.send(product);
+  let form = formidable({ keepExtensions: true, uploadDir: `./uploads` });
+
+  form.parse(req, async (err, fields, files) => {
+    if (err) return res.status(400).send("Something went wrong!!!");
+    // Turn array values to string
+    const data = {};
+    for (const key in fields) {
+      if (fields.hasOwnProperty(key)) {
+        data[key] = fields[key].join("");
+      }
+    }
+    const updatedValues = _.pick(data, [
+      "name",
+      "description",
+      "price",
+      "category",
+      "quantity",
+    ]);
+
+    _.assignIn(product, updatedValues);
+
+    // Input field name photo
+    if (files.photo) {
+      fs.readFile(files.photo[0].filepath, async (err, data) => {
+        if (err) return res.status(400).send("Error in image");
+        product.photo.data = data;
+        product.photo.contentType = files.photo[0].mimetype;
+        try {
+          const result = await product.save();
+          return res.send("Product Updated successfully");
+        } catch (err) {
+          return res.status(500).send("Internal Server Error!");
+        }
+      });
+    } else {
+      await product.save();
+      return res.send("Product Updated successfully");
+    }
+  });
 };

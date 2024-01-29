@@ -21,5 +21,8 @@ app.use("/api/category", categoryRouter);
 app.use("/api/product", productRouter);
 
 // Global Error collector
+app.use((err, req, res, next) => {
+  return res.status(500).send("Something went wrong");
+});
 
 module.exports = app;
