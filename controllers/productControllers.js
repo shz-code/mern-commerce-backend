@@ -26,7 +26,7 @@ module.exports.createProduct = async (req, res) => {
       fs.readFile(files.photo[0].filepath, async (err, data) => {
         if (err) return res.status(400).send("Error in image");
         product.photo.data = data;
-        product.photo.contentType = files.photo[0].mimetype.split("/")[1];
+        product.photo.contentType = files.photo[0].mimetype;
         try {
           const result = await product.save();
           return res.status(201).send({
@@ -51,7 +51,7 @@ module.exports.createProduct = async (req, res) => {
 };
 
 module.exports.getProducts = async (req, res) => {
-  // Query Params
+  // Query String
   const orderBy = req.query.order === "desc" ? -1 : 1;
   const sortBy = req.query.sort ? req.query.sort : "_id";
   const limit = req.query.limit ? Number(req.query.limit) : 5;
@@ -65,9 +65,22 @@ module.exports.getProducts = async (req, res) => {
 };
 
 module.exports.getProduct = async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id)
+    .select({ photo: 0 })
+    .populate("category", "name");
   if (!product) return res.status(400).send("Product not found");
   return res.send(product);
+};
+
+module.exports.getPhoto = async (req, res) => {
+  const product = await Product.findById(req.params.id).select({
+    photo: 1,
+    _id: 0,
+  });
+  if (!product) return res.status(400).send("Product not found");
+  return res
+    .set("Content-Type", product.photo.contentType)
+    .send(product.photo.data);
 };
 
 module.exports.updateProduct = async (req, res) => {
