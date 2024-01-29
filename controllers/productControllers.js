@@ -51,7 +51,16 @@ module.exports.createProduct = async (req, res) => {
 };
 
 module.exports.getProducts = async (req, res) => {
-  const products = await Product.find().sort({ name: 1 });
+  // Query Params
+  const orderBy = req.query.order === "desc" ? -1 : 1;
+  const sortBy = req.query.sort ? req.query.sort : "_id";
+  const limit = req.query.limit ? Number(req.query.limit) : 5;
+
+  const products = await Product.find()
+    .select({ photo: 0 })
+    .sort({ [sortBy]: orderBy })
+    .limit(limit)
+    .populate("category", "name");
   return res.send(products);
 };
 
