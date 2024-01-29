@@ -7,25 +7,25 @@ dotenv.config();
 
 const userSchema = Schema(
   {
-    name: { type: String, required: true },
+    name: String,
     username: { type: String, unique: true },
-    phone: { type: Number, required: true, unique: true },
+    phone: Number,
     email: { type: String, required: true, unique: true },
     password: {
       type: String,
       required: true,
     },
-    role: String,
+    role: { type: String, default: "customer" },
   },
   { timestamps: true }
 );
 
-userSchema.methods.generateJWT = () => {
+userSchema.methods.generateJWT = (_id, username, role) => {
   const token = JWT.sign(
     {
-      username: this.username,
-      _id: this._id,
-      role: this.role,
+      _id: _id,
+      username: username,
+      role: role,
     },
     process.env.JWT_SECRET_KEY,
     { expiresIn: "7d" }
