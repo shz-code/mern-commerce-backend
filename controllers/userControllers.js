@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const _ = require("lodash");
 const { User, validate } = require("../models/user");
 
 module.exports.register = async (req, res) => {
@@ -24,4 +23,18 @@ module.exports.register = async (req, res) => {
   });
 };
 
-module.exports.login = async (req, res) => {};
+module.exports.login = async (req, res) => {
+  let user = await User.findOne({
+    $or: [{ email: req.body.data }, { username: req.body.data }],
+  });
+  if (!user) return res.status(400).send("Invalid email/username");
+
+  const validUser = await bcrypt.compare(req.body.password, user.password);
+  if (!validUser) return res.status(400).send("Invalid password!");
+
+  const token = user.generateJWT(user._id, user.username, user.role);
+  return res.status(200).send({
+    message: "Login Successful!",
+    token: token,
+  });
+};
