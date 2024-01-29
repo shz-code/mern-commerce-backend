@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/user", userRouter);
 
+// Global Error collector
 app.use((err, req, res, next) => {
   return res.status(500).send("Something went wrong");
 });
