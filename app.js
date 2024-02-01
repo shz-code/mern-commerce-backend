@@ -1,28 +1,11 @@
 require("express-async-errors");
 const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
 const app = express();
+const error = require("./middlewares/error");
 
-const userRouter = require("./routers/userRouter");
-const categoryRouter = require("./routers/categoryRouter");
-const productRouter = require("./routers/productRouter");
+require("./middlewares")(app);
+require("./routers")(app);
 
-app.use(cors());
-app.use(express.json());
-app.use(morgan("dev"));
-
-app.get("/", (req, res) => {
-  res.send("Welcome");
-});
-
-app.use("/api/user", userRouter);
-app.use("/api/category", categoryRouter);
-app.use("/api/product", productRouter);
-
-// Global Error collector
-app.use((err, req, res, next) => {
-  return res.status(500).send("Something went wrong");
-});
+app.use(error);
 
 module.exports = app;
