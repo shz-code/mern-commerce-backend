@@ -1,6 +1,6 @@
-const userRouter = require("../routers/userRouter");
-const categoryRouter = require("../routers/categoryRouter");
-const productRouter = require("../routers/productRouter");
+const userRouter = require("./userRouter");
+const categoryRouter = require("./categoryRouter");
+const productRouter = require("./productRouter");
 
 module.exports = (app) => {
   app.get("/", (req, res) => {
