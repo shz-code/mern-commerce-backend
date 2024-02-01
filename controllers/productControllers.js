@@ -127,3 +127,38 @@ module.exports.updateProduct = async (req, res) => {
     }
   });
 };
+
+module.exports.filterProducts = async (req, res) => {
+  let orderBy = req.body.order === "desc" ? -1 : 1;
+  let sortBy = req.body.sort ? req.body.sort : "_id";
+  let limit = req.body.limit ? Number(req.body.limit) : 5;
+  let skip = Number(req.body.skip) || 0;
+  let filters = req.body.filters;
+  let args = {};
+
+  for (let key in filters) {
+    if (filters[key].length > 0) {
+      if (key === "price") {
+        // { price: {$gte: 0, $lte: 1000 }}
+        args["price"] = {
+          $gte: filters["price"][0],
+          $lte: filters["price"][1],
+        };
+      }
+      if (key === "category") {
+        // category: { $in: [''] }
+        args["category"] = {
+          $in: filters["category"],
+        };
+      }
+    }
+  }
+
+  const products = await Product.find(args)
+    .select({ photo: 0 })
+    .sort({ [sortBy]: orderBy })
+    .limit(limit)
+    .skip(skip)
+    .populate("category", "name");
+  return res.send(products);
+};
