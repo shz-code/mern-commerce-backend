@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const { User, validate } = require("../models/user");
+const { Profile } = require("../models/profile");
 const _ = require("lodash");
 
 module.exports.register = async (req, res) => {
@@ -17,11 +18,20 @@ module.exports.register = async (req, res) => {
   password = await bcrypt.hash(req.body.password, salt);
 
   user = new User({ ...req.body, password: password });
+  profile = new Profile({
+    user: user._id,
+    orders: 0,
+    address: "",
+    city: "",
+    state: "",
+    postcode: "",
+    country: "Bangladesh",
+  });
 
   const token = user.generateJWT(user._id, user.username, user.role);
 
   await user.save();
-
+  await profile.save();
   return res.status(201).send({
     message: "Registration Successful!",
     token: token,
