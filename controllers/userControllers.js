@@ -1,12 +1,17 @@
 const bcrypt = require("bcrypt");
 const { User, validate } = require("../models/user");
+const _ = require("lodash");
 
 module.exports.register = async (req, res) => {
-  const { error } = validate(req.body);
+  const { error } = validate(
+    _.pick(req.body, ["username", "email", "password"])
+  );
   if (error) return res.status(400).send(error.details[0].message);
 
-  user = await User.findOne({ email: req.body.email });
-  if (user) return res.status(400).send("User already registered!");
+  user = await User.findOne({
+    $or: [{ email: req.body.email }, { username: req.body.username }],
+  });
+  if (user) return res.status(400).send("Email/ Username already used!");
 
   const salt = await bcrypt.genSalt(10);
   password = await bcrypt.hash(req.body.password, salt);
