@@ -9,7 +9,7 @@ module.exports.createCategory = async (req, res) => {
   await category.save();
   return res.status(201).send({
     message: "Category created successfully",
-    data: { name: req.body.name },
+    data: { name: req.body.name, _id: category._id },
   });
 };
 

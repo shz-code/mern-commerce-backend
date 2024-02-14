@@ -13,7 +13,7 @@ const categorySchema = Schema(
 
 const validate = (category) => {
   const schema = joi.object({
-    name: joi.string().max(10).required(),
+    name: joi.string().max(50).required(),
   });
   return schema.validate(category);
 };
