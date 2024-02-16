@@ -1,26 +1,26 @@
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
 const dotenv = require("dotenv");
 const { User } = require("../models/user");
 const { Profile } = require("../models/profile");
 dotenv.config();
 
-const redirectURL = "http://localhost:4003/api/auth/google/redirect";
+const redirectURL = "http://localhost:4003/api/auth/fb/redirect";
 
 passport.use(
-  new GoogleStrategy(
+  new FacebookStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
       callbackURL: redirectURL,
+      profileFields: ["id", "displayName", "photos", "email"],
     },
     async (accessToken, refreshToken, profile, cb) => {
-      const { sub, name, given_name, family_name, picture, email } =
-        profile._json;
+      const { id, name, picture, email } = profile._json;
 
       const user = await User.findOne({ email: email });
       if (user) {
-        if (user.provider != "google") {
+        if (user.provider != "fb") {
           cb(null, { status: 400, msg: "Email already used!" });
         }
         // Login User
@@ -42,12 +42,12 @@ passport.use(
         const user = new User({
           name: name,
           email: email,
-          photo: picture,
-          username: `${given_name}_${family_name}_${Math.floor(
+          photo: picture.data.url,
+          username: `${name.split(" ").join("_").toLowerCase()}_${Math.floor(
             Math.random() * 10
           )}`,
-          provider: "google",
-          googleId: sub,
+          provider: "fb",
+          facebookId: id,
         });
         const profile = new Profile({
           user: user._id,

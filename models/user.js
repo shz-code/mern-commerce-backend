@@ -14,8 +14,8 @@ const userSchema = Schema(
     password: String,
     role: { type: String, default: "customer" },
     provider: { type: String, default: "manual" },
-    googleId: Number,
-    facebookId: Number,
+    googleId: String,
+    facebookId: String,
     photo: { type: String, default: "none" },
   },
   { timestamps: true }

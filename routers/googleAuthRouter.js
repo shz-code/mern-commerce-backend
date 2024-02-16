@@ -11,7 +11,6 @@ router
 router.route("/redirect").get(
   passport.authenticate("google", {
     session: false,
-    failureRedirect: `http://localhost:5173/register?status=failed`,
   }),
   redirect
 );

@@ -40,6 +40,7 @@ module.exports.register = async (req, res) => {
 module.exports.login = async (req, res) => {
   let user = await User.findOne({
     $or: [{ email: req.body.data }, { username: req.body.data }],
+    provider: "manual",
   });
   if (!user) return res.status(400).send("Invalid email/username");
 
