@@ -9,23 +9,25 @@ const userSchema = Schema(
   {
     name: String,
     username: { type: String, unique: true },
-    phone: Number,
+    phone: { type: String, default: "none" },
     email: { type: String, required: true, unique: true },
-    password: {
-      type: String,
-      required: true,
-    },
+    password: String,
     role: { type: String, default: "customer" },
+    provider: { type: String, default: "manual" },
+    googleId: Number,
+    facebookId: Number,
+    photo: { type: String, default: "none" },
   },
   { timestamps: true }
 );
 
-userSchema.methods.generateJWT = (_id, username, role) => {
+userSchema.methods.generateJWT = (_id, username, role, photo) => {
   const token = JWT.sign(
     {
       _id: _id,
       username: username,
       role: role,
+      photo: photo,
     },
     process.env.JWT_SECRET_KEY,
     { expiresIn: "7d" }

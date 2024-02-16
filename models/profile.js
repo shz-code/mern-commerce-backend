@@ -6,12 +6,12 @@ const profileSchema = Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    orders: Number,
-    address: String,
-    city: String,
-    state: String,
-    postcode: Number,
-    country: String,
+    orders: { type: Number, default: 0 },
+    address: { type: String, default: "none" },
+    city: { type: String, default: "none" },
+    state: { type: String, default: "none" },
+    postcode: { type: Number, default: 1200 },
+    country: { type: String, default: "Bangladesh" },
   },
   { timestamps: true }
 );

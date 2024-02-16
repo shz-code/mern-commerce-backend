@@ -20,15 +20,14 @@ module.exports.register = async (req, res) => {
   user = new User({ ...req.body, password: password });
   profile = new Profile({
     user: user._id,
-    orders: 0,
-    address: "",
-    city: "",
-    state: "",
-    postcode: "",
-    country: "Bangladesh",
   });
 
-  const token = user.generateJWT(user._id, user.username, user.role);
+  const token = user.generateJWT(
+    user._id,
+    user.username,
+    user.role,
+    user.photo
+  );
 
   await user.save();
   await profile.save();
@@ -47,7 +46,12 @@ module.exports.login = async (req, res) => {
   const validUser = await bcrypt.compare(req.body.password, user.password);
   if (!validUser) return res.status(400).send("Invalid password!");
 
-  const token = user.generateJWT(user._id, user.username, user.role);
+  const token = user.generateJWT(
+    user._id,
+    user.username,
+    user.role,
+    user.photo
+  );
   return res.status(200).send({
     message: "Login Successful!",
     token: token,

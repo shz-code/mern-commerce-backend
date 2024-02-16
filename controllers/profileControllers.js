@@ -2,7 +2,6 @@ const { Profile } = require("../models/profile");
 const _ = require("lodash");
 
 module.exports.getProfile = async (req, res) => {
-  console.log(req.params.id);
   profile = await Profile.findOne({ user: req.params.id }).populate("user", [
     "name",
     "phone",
