@@ -6,6 +6,6 @@ const error = require("./middlewares/error");
 require("./middlewares")(app);
 require("./routers")(app);
 
-app.use(error);
+// app.use(error);
 
 module.exports = app;
