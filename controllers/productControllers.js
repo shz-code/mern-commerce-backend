@@ -19,7 +19,7 @@ module.exports.createProduct = async (req, res) => {
     const { error } = validate(data);
     if (error) return res.status(400).send(error.details[0].message);
 
-    const product = new Product(data);
+    const product = new Product({ ...data, slug: data.name.toLowerCase() });
 
     // Input field name photo
     if (files.photo) {
@@ -54,12 +54,39 @@ module.exports.getProducts = async (req, res) => {
   // Query String
   const orderBy = req.query.order === "desc" ? -1 : 1;
   const sortBy = req.query.sort ? req.query.sort : "_id";
-  const limit = req.query.limit ? Number(req.query.limit) : 5;
+  const limit = req.query.limit ? Number(req.query.limit) : 1;
+  const search = req.query.search ? req.query.search : "";
+  const skip = Number(req.query.skip) || 0;
+  const min = Number(req.query.min) || 1;
+  const max = Number(req.query.max) || 50000;
+  const category = req.query.category ? JSON.parse(req.query.category) : null;
+  let args = {};
 
-  const products = await Product.find()
+  args["price"] = {
+    $gte: min,
+    $lte: max,
+  };
+  if (category) {
+    args["category"] = {
+      $in: category,
+    };
+  }
+  let query = {};
+  if (search) {
+    query = {
+      $or: [
+        { slug: { $regex: `${search.toLowerCase()}` } },
+        { description: { $regex: `${search.toLowerCase()}` } },
+      ],
+    };
+    args = Object.assign({}, args, query);
+  }
+
+  const products = await Product.find(args)
     .select({ photo: 0 })
     .sort({ [sortBy]: orderBy })
     .limit(limit)
+    .skip(skip)
     .populate("category", "name");
   return res.send(products);
 };
