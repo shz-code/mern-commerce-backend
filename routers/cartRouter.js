@@ -5,10 +5,11 @@ const {
   getCart,
 } = require("../controllers/cartController");
 const authorize = require("../middlewares/authorize");
+const identify = require("../middlewares/identify");
 
 router
   .route("/")
-  .get([authorize], getCart)
+  .get([identify], getCart)
   .post([authorize], addCart)
   .delete([authorize], removeCart);
 

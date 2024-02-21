@@ -2,8 +2,11 @@ const _ = require("lodash");
 const { Cart } = require("../models/cart");
 
 module.exports.getCart = async (req, res) => {
-  const cart = await Cart.findOne({ user: req.user._id });
-  return res.send(_.pick(cart, ["products", "price"]));
+  console.log(req.user);
+  if (req.user) {
+    const cart = await Cart.findOne({ user: req.user._id });
+    return res.send(_.pick(cart, ["products", "price"]));
+  } else return res.send({});
 };
 
 module.exports.addCart = async (req, res) => {
@@ -42,7 +45,10 @@ module.exports.addCart = async (req, res) => {
     await cart.save();
   }
 
-  return res.send(_.pick(cart, ["products", "price"]));
+  return res.send({
+    data: _.pick(cart, ["products", "price"]),
+    message: "Add to cart successful",
+  });
 };
 
 module.exports.removeCart = async (req, res) => {
