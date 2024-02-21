@@ -11,6 +11,6 @@ router
   .route("/")
   .get([identify], getCart)
   .post([authorize], addCart)
-  .delete([authorize], removeCart);
+  .put([authorize], removeCart);
 
 module.exports = router;
