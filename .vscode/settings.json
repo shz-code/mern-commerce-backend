@@ -8,5 +8,11 @@
   "javascript.validate.enable": false,
   "typescript.validate.enable": false,
   "css.lint.unknownAtRules": "ignore",
-  "cSpell.words": ["Formik", "Ninish", "reduxjs", "tailwindcss"]
+  "cSpell.words": [
+    "Commerz",
+    "Formik",
+    "Ninish",
+    "reduxjs",
+    "tailwindcss"
+  ]
 }

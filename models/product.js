@@ -7,6 +7,7 @@ const productCategory = Schema(
     slug: String,
     description: String,
     price: Number,
+    sold: { type: Number, default: 0 },
     category: {
       type: Schema.Types.ObjectId,
       ref: "Category",

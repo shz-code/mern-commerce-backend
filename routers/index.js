@@ -6,6 +6,7 @@ const googleAuthRouter = require("./googleAuthRouter");
 const fbAuthRouter = require("./fbAuthRouter");
 const cartRouter = require("./cartRouter");
 const couponRouter = require("./couponRouter");
+const orderRouter = require("./orderRouter");
 
 module.exports = (app) => {
   app.get("/", (req, res) => {
@@ -19,4 +20,5 @@ module.exports = (app) => {
   app.use("/api/auth/google", googleAuthRouter);
   app.use("/api/auth/fb", fbAuthRouter);
   app.use("/api/coupon", couponRouter);
+  app.use("/api/order", orderRouter);
 };

@@ -4,7 +4,7 @@ const { Cart } = require("../models/cart");
 module.exports.getCart = async (req, res) => {
   console.log(req.user);
   if (req.user) {
-    const cart = await Cart.findOne({ user: req.user._id });
+    const cart = await Cart.findOne({ user: req.user._id, status: "pending" });
     return res.send(_.pick(cart, ["products", "price", "_id"]));
   } else return res.send({});
 };

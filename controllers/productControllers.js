@@ -54,7 +54,7 @@ module.exports.getProducts = async (req, res) => {
   // Query String
   const orderBy = req.query.order === "desc" ? -1 : 1;
   const sortBy = req.query.sort ? req.query.sort : "_id";
-  const limit = req.query.limit ? Number(req.query.limit) : 1;
+  const limit = req.query.limit ? Number(req.query.limit) : 5;
   const search = req.query.search ? req.query.search : "";
   const skip = Number(req.query.skip) || 0;
   const min = Number(req.query.min) || 1;
