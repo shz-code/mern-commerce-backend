@@ -1,5 +1,6 @@
 const _ = require("lodash");
 const { Cart } = require("../models/cart");
+const { Product } = require("../models/product");
 
 module.exports.getCart = async (req, res) => {
   if (req.user) {
@@ -15,6 +16,17 @@ module.exports.addCart = async (req, res) => {
       (item) => item.product === req.body.product
     );
     if (ck !== -1) {
+      const product = await Product.findById(cart.products[ck].product);
+      if (
+        product.quantity - product.sold - (cart.products[ck].quantity + 1) <
+        0
+      ) {
+        return res.send({
+          data: _.pick(cart, ["products", "price", "_id"]),
+          message: "Not enough product(s) available",
+          status: false,
+        });
+      }
       cart.products[ck].quantity += 1;
       cart.price += Number(req.body.price);
       await cart.save();
@@ -47,6 +59,7 @@ module.exports.addCart = async (req, res) => {
   return res.send({
     data: _.pick(cart, ["products", "price", "_id"]),
     message: "Add to cart successful",
+    status: true,
   });
 };
 
