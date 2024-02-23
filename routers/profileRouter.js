@@ -1,8 +1,13 @@
 const router = require("express").Router();
-const { getProfile } = require("../controllers/profileControllers");
+const {
+  getProfile,
+  updateProfile,
+} = require("../controllers/profileControllers");
 const authorize = require("../middlewares/authorize");
-const admin = require("../middlewares/admin");
 
-router.route("/:id").get([authorize], getProfile);
+router
+  .route("/:id")
+  .get([authorize], getProfile)
+  .patch([authorize], updateProfile);
 
 module.exports = router;
