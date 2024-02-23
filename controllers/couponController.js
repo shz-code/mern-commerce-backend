@@ -19,7 +19,7 @@ module.exports.check = async (req, res) => {
         status: false,
         msg: "Maximum usage limit reached",
       };
-    } else if (expire > new Date().getTime()) {
+    } else if (expire < new Date().getTime()) {
       response = {
         status: false,
         msg: "Coupon expired",
@@ -42,7 +42,7 @@ module.exports.create = async (req, res) => {
   const coupon = new Coupon({
     ...req.body,
     slug: req.body.name.toLowerCase(),
-    limit: req.body.usable,
+    limit: req.body.useable,
   });
   await coupon.save();
   return res.send(coupon);
