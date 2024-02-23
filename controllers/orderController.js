@@ -210,6 +210,9 @@ module.exports.success = async (req, res) => {
   await cart.save();
   await order.save();
   await transaction.save();
+  profile.orders += 1;
+
+  await profile.save();
 
   if (coupon_id != "none") {
     const coupon = await Coupon.findById(coupon_id);
