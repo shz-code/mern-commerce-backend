@@ -13,6 +13,7 @@ const orderSchema = Schema(
     country: { type: String, required: true },
     phone: { type: String, required: true },
     amount: Number,
+    coupon: { type: Schema.Types.ObjectId, ref: "Coupon" },
     cart: {
       type: Schema.Types.ObjectId,
       ref: "Cart",

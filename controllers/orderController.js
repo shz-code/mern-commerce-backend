@@ -151,6 +151,7 @@ module.exports.success = async (req, res) => {
     amount: amount,
     trx: tran_id,
     cart: cart_id,
+    coupon: coupon_id,
   });
 
   const transaction = new Transaction({
@@ -223,4 +224,15 @@ module.exports.fail = async (req, res) => {
 
 module.exports.cancel = async (req, res) => {
   return res.redirect(`${redirectURL}/checkout`);
+};
+
+module.exports.getOrder = async (req, res) => {
+  const order = await Order.findById(req.params.id).populate("cart", ["price"]);
+  if (!order) return res.states(400).send("Not Found");
+  return res.send(order);
+};
+
+module.exports.getOrders = async (req, res) => {
+  const order = await Order.find({ user: req.user._id });
+  return res.send(order);
 };
