@@ -15,10 +15,42 @@ const redirectURL = "http://localhost:5173";
 
 module.exports.init = async (req, res) => {
   const { cart, coupon, user_info } = req.body;
+
   //   Just to check if everything is alright
   let totalPrice = cart.products.reduce((a, b) => a + b.price * b.quantity, 0);
+  let product_ids = cart.products.reduce((a, b) => a.concat(b.product), []);
+
+  let product_quantity = {};
+  cart.products.map((product) => {
+    product_quantity[product.product] = product.quantity;
+  });
+
+  let products = await Product.find({
+    _id: { $in: ["65cf8dc0ae3c6928ced6828e", "65cf8e32ae3c6928ced68299"] },
+  }).select({ photo: 0 });
+
+  let ck = true;
+  products.map((product) => {
+    if (
+      product.quantity -
+        product.sold -
+        product_quantity[product._id.toString()] <
+      0
+    ) {
+      ck = false;
+    }
+  });
+
+  if (!ck)
+    return res.send({
+      status: false,
+      message: "The selected product(s) are out of stock",
+    });
+
   if (totalPrice != cart.price)
-    return res.status(400).send("Client Error. Clear your cart and try again");
+    return res
+      .status(400)
+      .send({ msg: "Client Error. Clear your cart and try again" });
   let discountAmount = 0;
 
   let coupon_id = "none";
@@ -76,6 +108,8 @@ module.exports.init = async (req, res) => {
     value_b: cart._id,
     value_c: coupon_id,
   };
+
+  // return res.send({ status: false });
   const ssl = new SSLCommerzPayment(
     process.env.STORE_ID,
     process.env.STORE_PASSWORD,
@@ -227,9 +261,23 @@ module.exports.cancel = async (req, res) => {
 };
 
 module.exports.getOrder = async (req, res) => {
-  const order = await Order.findById(req.params.id).populate("cart", ["price"]);
-  if (!order) return res.states(400).send("Not Found");
-  return res.send(order);
+  const order = await Order.findById(req.params.id)
+    .populate("cart", ["price", "products"])
+    .populate("coupon", ["name", "description"]);
+  if (!order) return res.status(400).send("Not Found");
+  return res.send(
+    _.pick(order, [
+      "_id",
+      "address",
+      "city",
+      "state",
+      "country",
+      "postcode",
+      "trx",
+      "cart",
+      "coupon",
+    ])
+  );
 };
 
 module.exports.getOrders = async (req, res) => {

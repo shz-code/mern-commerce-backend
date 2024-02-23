@@ -7,6 +7,7 @@ const fbAuthRouter = require("./fbAuthRouter");
 const cartRouter = require("./cartRouter");
 const couponRouter = require("./couponRouter");
 const orderRouter = require("./orderRouter");
+const transactionRouter = require("./transactionRouter");
 
 module.exports = (app) => {
   app.get("/", (req, res) => {
@@ -21,4 +22,5 @@ module.exports = (app) => {
   app.use("/api/auth/fb", fbAuthRouter);
   app.use("/api/coupon", couponRouter);
   app.use("/api/order", orderRouter);
+  app.use("/api/transaction", transactionRouter);
 };
