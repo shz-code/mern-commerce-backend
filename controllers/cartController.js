@@ -2,7 +2,6 @@ const _ = require("lodash");
 const { Cart } = require("../models/cart");
 
 module.exports.getCart = async (req, res) => {
-  console.log(req.user);
   if (req.user) {
     const cart = await Cart.findOne({ user: req.user._id, status: "pending" });
     return res.send(_.pick(cart, ["products", "price", "_id"]));
@@ -87,8 +86,6 @@ module.exports.removeCart = async (req, res) => {
         cumulatedPrice = item.price * item.quantity;
       } else return item;
     });
-
-    console.log(cumulatedPrice);
 
     const priceCk = cart.price - cumulatedPrice;
     if (priceCk === 0) {

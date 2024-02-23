@@ -2,6 +2,9 @@ const { Order } = require("../models/order");
 const { Profile } = require("../models/profile");
 const { User } = require("../models/user");
 const { Transaction } = require("../models/transaction");
+const { Coupon } = require("../models/coupon");
+const { Cart } = require("../models/cart");
+const { Product } = require("../models/product");
 const SSLCommerzPayment = require("sslcommerz-lts");
 const _ = require("lodash");
 const dotenv = require("dotenv");
@@ -161,11 +164,28 @@ module.exports.success = async (req, res) => {
     currency: currency,
   });
 
-  console.log(order);
-  console.log(coupon_id);
-  console.log(transaction);
+  const cart = await Cart.findById(cart_id);
 
-  return res.send("done");
+  cart.products.map(async (item) => {
+    const product = await Product.findById(item.product);
+    product.sold += item.quantity;
+    await product.save();
+  });
+  cart.status = "completed";
+  await cart.save();
+  await order.save();
+  await transaction.save();
+
+  if (coupon_id != "none") {
+    const coupon = await Coupon.findById(coupon_id);
+    if (coupon.useable > 0) coupon.useable -= 1;
+    coupon.used += 1;
+    await coupon.save();
+  }
+
+  return res.redirect(
+    `${redirectURL}/success/?order=${order._id}&trx=${transaction._id}`
+  );
 };
 
 /*
@@ -198,11 +218,9 @@ module.exports.success = async (req, res) => {
   verify_key: 'amount,bank_tran_id,base_fair,card_brand,card_issuer,card_issuer_country,card_issuer_country_code,card_no,card_sub_brand,card_type,currency,currency_amount,currency_rate,currency_type,error,status,store_id,tran_date,tran_id,value_a,value_b,value_c,value_d'
 */
 module.exports.fail = async (req, res) => {
-  console.log(req.body);
   return res.send("done");
 };
 
 module.exports.cancel = async (req, res) => {
   return res.redirect(`${redirectURL}/checkout`);
-  return res.send("done");
 };
