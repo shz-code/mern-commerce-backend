@@ -24,5 +24,5 @@ module.exports.getTransactions = async (req, res) => {
     updatedAt: 0,
     user: 0,
   });
-  return res.send();
+  return res.send(trx);
 };

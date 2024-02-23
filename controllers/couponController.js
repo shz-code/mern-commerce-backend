@@ -39,7 +39,11 @@ module.exports.check = async (req, res) => {
 };
 
 module.exports.create = async (req, res) => {
-  const coupon = new Coupon({ ...req.body, slug: req.body.name.toLowerCase() });
+  const coupon = new Coupon({
+    ...req.body,
+    slug: req.body.name.toLowerCase(),
+    limit: req.body.usable,
+  });
   await coupon.save();
   return res.send(coupon);
 };

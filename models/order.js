@@ -18,6 +18,11 @@ const orderSchema = Schema(
       type: Schema.Types.ObjectId,
       ref: "Cart",
     },
+    status: {
+      type: String,
+      enum: ["pending", "shipping", "complete"],
+      default: "pending",
+    },
     amount: Number,
     trx: String,
   },

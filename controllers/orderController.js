@@ -281,6 +281,19 @@ module.exports.getOrder = async (req, res) => {
 };
 
 module.exports.getOrders = async (req, res) => {
-  const order = await Order.find({ user: req.user._id });
+  const order = await Order.find({ user: req.user._id })
+    .select({
+      amount: 1,
+      cart: 1,
+      trx: 1,
+      createdAt: 1,
+      address: 1,
+      phone: 1,
+      city: 1,
+      state: 1,
+      country: 1,
+      status: 1,
+    })
+    .populate("cart", ["price", "products"]);
   return res.send(order);
 };

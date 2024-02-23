@@ -13,6 +13,7 @@ const couponSchema = Schema(
     discount: Number,
     expire: Date,
     useable: Number,
+    limit: Number,
     used: { type: Number, default: 0 },
     validity: {
       type: String,
