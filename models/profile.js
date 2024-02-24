@@ -12,6 +12,7 @@ const profileSchema = Schema(
     state: { type: String, default: "none" },
     postcode: { type: Number, default: 1200 },
     country: { type: String, default: "Bangladesh" },
+    orderItems: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   },
   { timestamps: true }
 );

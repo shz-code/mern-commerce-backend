@@ -18,6 +18,18 @@ const productCategory = Schema(
       data: Buffer,
       contentType: String,
     },
+    rating: { type: Number, default: 0 },
+    comments: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+        text: String,
+        createdAt: Date,
+        rating: Number,
+      },
+    ],
   },
   { timestamps: true }
 );

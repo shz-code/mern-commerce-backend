@@ -2,6 +2,7 @@ const _ = require("lodash");
 const { formidable } = require("formidable");
 const fs = require("fs");
 const { Product, validate } = require("../models/product");
+const { Profile } = require("../models/profile");
 
 module.exports.createProduct = async (req, res) => {
   let form = formidable({ keepExtensions: true, uploadDir: `./uploads` });
@@ -188,4 +189,25 @@ module.exports.filterProducts = async (req, res) => {
     .skip(skip)
     .populate("category", "name");
   return res.send(products);
+};
+
+module.exports.createComment = async (req, res) => {
+  const { user, text, rating } = req.body;
+
+  const product = await Product.findById(req.params.id).select({ photo: 0 });
+  if (!product) return res.status(400).send("Product not found");
+
+  const profile = await Profile.findOne({ user: user });
+  if (!profile) return res.status(400).send("Profile not found");
+
+  arr = ["65cf8dc0ae3c6928ced6828e", "65cf8e32ae3c6928ced68299"];
+
+  let product_ids = arr.reduce((a, b) => a.concat(b), []);
+  profile.orders += 1;
+  profile.orderItems = [...profile.orderItems, ...product_ids];
+
+  console.log(product_ids);
+  console.log(profile);
+
+  return res.send({ products: "ok" });
 };

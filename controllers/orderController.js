@@ -29,8 +29,6 @@ module.exports.init = async (req, res) => {
     _id: { $in: product_ids },
   }).select({ photo: 0 });
 
-  console.log(products);
-
   let ck = true;
   products.map((product) => {
     if (
@@ -170,11 +168,11 @@ module.exports.success = async (req, res) => {
     card_issuer,
     currency,
   } = req.body;
+  const trans = await Transaction.findOne({ trx: tran_id });
+  if (trans) return res.status(400).send("Transaction already fulfilled");
+
   const user = await User.findById(user_id);
   const profile = await Profile.findOne({ user: user_id });
-
-  const trans = await Transaction.findOne({ bank_tran_id: bank_tran_id });
-  if (trans) return res.status(400).send("Transaction already fulfilled");
 
   const order = new Order({
     user: user_id,
@@ -212,7 +210,10 @@ module.exports.success = async (req, res) => {
   await cart.save();
   await order.save();
   await transaction.save();
+
+  let product_ids = cart.products.reduce((a, b) => a.concat(b.product), []);
   profile.orders += 1;
+  profile.orderItems = [...profile.orderItems, ...product_ids];
 
   await profile.save();
 
@@ -258,7 +259,7 @@ module.exports.success = async (req, res) => {
   verify_key: 'amount,bank_tran_id,base_fair,card_brand,card_issuer,card_issuer_country,card_issuer_country_code,card_no,card_sub_brand,card_type,currency,currency_amount,currency_rate,currency_type,error,status,store_id,tran_date,tran_id,value_a,value_b,value_c,value_d'
 */
 module.exports.fail = async (req, res) => {
-  return res.send("done");
+  return res.redirect(`${redirectURL}/checkout`);
 };
 
 module.exports.cancel = async (req, res) => {
