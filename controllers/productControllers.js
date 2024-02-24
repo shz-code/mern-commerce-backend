@@ -200,14 +200,8 @@ module.exports.createComment = async (req, res) => {
   const profile = await Profile.findOne({ user: user });
   if (!profile) return res.status(400).send("Profile not found");
 
-  arr = ["65cf8dc0ae3c6928ced6828e", "65cf8e32ae3c6928ced68299"];
+  product.comments = [...product.comments, req.body];
+  await product.save();
 
-  let product_ids = arr.reduce((a, b) => a.concat(b), []);
-  profile.orders += 1;
-  profile.orderItems = [...profile.orderItems, ...product_ids];
-
-  console.log(product_ids);
-  console.log(profile);
-
-  return res.send({ products: "ok" });
+  return res.send(product.comments);
 };
