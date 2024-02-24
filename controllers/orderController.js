@@ -26,8 +26,10 @@ module.exports.init = async (req, res) => {
   });
 
   let products = await Product.find({
-    _id: { $in: ["65cf8dc0ae3c6928ced6828e", "65cf8e32ae3c6928ced68299"] },
+    _id: { $in: product_ids },
   }).select({ photo: 0 });
+
+  console.log(products);
 
   let ck = true;
   products.map((product) => {
