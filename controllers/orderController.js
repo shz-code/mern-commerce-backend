@@ -259,7 +259,7 @@ module.exports.success = async (req, res) => {
   verify_key: 'amount,bank_tran_id,base_fair,card_brand,card_issuer,card_issuer_country,card_issuer_country_code,card_no,card_sub_brand,card_type,currency,currency_amount,currency_rate,currency_type,error,status,store_id,tran_date,tran_id,value_a,value_b,value_c,value_d'
 */
 module.exports.fail = async (req, res) => {
-  return res.redirect(`${redirectURL}/checkout`);
+  return res.redirect(`${redirectURL}/shop`);
 };
 
 module.exports.cancel = async (req, res) => {
