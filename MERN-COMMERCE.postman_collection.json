@@ -1,0 +1,909 @@
+{
+	"info": {
+		"_postman_id": "a3434b2c-d3f3-464e-8ae6-f44f2e9a916b",
+		"name": "MERN-COMMERCE",
+		"description": "API test endpoints for mern-commerce project.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29328078"
+	},
+	"item": [
+		{
+			"name": "user.register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWI3MmUwNDMwYmVkOGIzMjhiM2NiZGIiLCJ1c2VybmFtZSI6InNoeiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwNjUwNjA4MSwiZXhwIjoxNzA3MTEwODgxfQ.mxlRRCqJhW1NWInbJR5SOcVU9n58uVjfDKXHcuPvcAI",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"shz\",\r\n    \"email\": \"web.shahidul.alam@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user.login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWI3MmUwNDMwYmVkOGIzMjhiM2NiZGIiLCJ1c2VybmFtZSI6InNoeiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwNjUwNjA4MSwiZXhwIjoxNzA3MTEwODgxfQ.mxlRRCqJhW1NWInbJR5SOcVU9n58uVjfDKXHcuPvcAI",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": \"shz\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile.getProfile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4003/api/profile/65cf6b57b61d0d9521f180a4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"profile",
+						"65cf6b57b61d0d9521f180a4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile.updateProfile",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI3M2I2MWQwZDk1MjFmMTgwYWMiLCJ1c2VybmFtZSI6InNoeiIsInJvbGUiOiJjdXN0b21lciIsInBob3RvIjoibm9uZSIsImlhdCI6MTcwODcwNjQzOCwiZXhwIjoxNzA5MzExMjM4fQ.y0lJSyJXKZalAJRMxxEjmSSmh403Sbvrwxz92NwFHqI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rabbi\",\r\n    \"phone\": \"01835227954\",\r\n    \"address\": \"Mirpur\",\r\n    \"city\": \"ctg\",\r\n    \"state\":\"ctg\",\r\n    \"postcode\": \"123\",\r\n    \"country\": \"bd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/profile/65cf6b73b61d0d9521f180ac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"profile",
+						"65cf6b73b61d0d9521f180ac"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "category.getAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4003/api/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "category.create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImN1c3RvbWVyIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA0MTQsImV4cCI6MTcwODcwNTIxNH0.R4SEq_i2pan5DKqxeIW7V-5aFmkWAF7SIe14rZQZzuA",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jewelry\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product.getAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4003/api/product?order=asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"product"
+					],
+					"query": [
+						{
+							"key": "order",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product.getOne",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4003/api/product/65d8a922758d9fa2254101a5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"product",
+						"65d8a922758d9fa2254101a5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product.getPhoto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4003/api/product/photo/65b7bd475dd47460397b77bb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"product",
+						"photo",
+						"65b7bd475dd47460397b77bb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product.create",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "HOCO W35",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Best wireless headphone",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "1150",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "40",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "65b739529ac1de0c36a5c3e6",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "postman-cloud:///1eebe9b5-f17d-45f0-a1b5-b323d9b2b386"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product.update",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWI3MmUwNDMwYmVkOGIzMjhiM2NiZGIiLCJ1c2VybmFtZSI6InNoeiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwNjUwNjA4MSwiZXhwIjoxNzA3MTEwODgxfQ.mxlRRCqJhW1NWInbJR5SOcVU9n58uVjfDKXHcuPvcAI",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Baseus",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Best wireless headphone",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "1150",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": "40",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "65b739529ac1de0c36a5c3e6",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "postman-cloud:///1eebebad-3f1d-45a0-839d-6d369885844d",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/product/65b7bd475dd47460397b77bb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"product",
+						"65b7bd475dd47460397b77bb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product.filter",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWI3MmUwNDMwYmVkOGIzMjhiM2NiZGIiLCJ1c2VybmFtZSI6InNoeiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwNjUwNjA4MSwiZXhwIjoxNzA3MTEwODgxfQ.mxlRRCqJhW1NWInbJR5SOcVU9n58uVjfDKXHcuPvcAI",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"order\": \"asc\",\r\n    \"sort\": \"price\",\r\n    \"limit\": 5,\r\n    \"skip\": 0,\r\n    \"filters\": {\r\n        \"price\": [1000,1200],\r\n        \"category\": [\"65b739529ac1de0c36a5c3e6\",\"65b7bd475dd47460397b77bb\"]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/product/filter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"product",
+						"filter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product.createComment",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDg3Nzc0MDQsImV4cCI6MTcwOTM4MjIwNH0.59BWoRZOxZ88dL_XbIhu8pOXVT_mEGMYsQ0ayx7cheo",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"65cf6b57b61d0d9521f180a4\",\r\n    \"text\": \"Great Product\",\r\n    \"rating\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/product/comment/65d8a922758d9fa2254101a5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"product",
+						"comment",
+						"65d8a922758d9fa2254101a5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cart.getCart",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4003/api/cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cart.createCart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product\": \"65cf8e32ae3c6928ced68299\",\r\n    \"price\": 3500,\r\n    \"name\": \"Nothing Earbuds\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cart.removeCart",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI3M2I2MWQwZDk1MjFmMTgwYWMiLCJ1c2VybmFtZSI6InNoeiIsInJvbGUiOiJjdXN0b21lciIsInBob3RvIjoibm9uZSIsImlhdCI6MTcwODUyODY2MywiZXhwIjoxNzA5MTMzNDYzfQ.iQEq5uIAIhWRoPzCaWUqKjJW5wPcZRn3tc_K9A3-Mm8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"single\",\r\n    \"product\": \"65cf8e32ae3c6928ced68299\",\r\n    \"price\": 3500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "coupon.getAll",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4003/api/coupon/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"coupon",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "coupon.check",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"coupon_name\": \"ABC100\",\r\n    \"product\": [\"65cf8dc0ae3c6928ced6828e\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/coupon/check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"coupon",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "coupon.create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"ABS5\",\r\n    \"description\": \"5 perchent coupon\",\r\n    \"discountType\": \"percentage\",\r\n    \"discount\": 5,\r\n    \"expire\": 1708583261327,\r\n    \"validity\": \"all\",\r\n    \"useable\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/coupon/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"coupon",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order.init",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cart\": {\r\n        \"products\": [\r\n            {\r\n                \"product\": \"65cf8e32ae3c6928ced68299\",\r\n                \"quantity\": 3,\r\n                \"price\": 3500,\r\n                \"name\": \"Nothing Earbuds\",\r\n                \"_id\": \"65d7015a31613750bb229821\"\r\n            },\r\n            {\r\n                \"product\": \"65cf8dc0ae3c6928ced6828e\",\r\n                \"quantity\": 5,\r\n                \"price\": 1200,\r\n                \"name\": \"Hoco W35\",\r\n                \"_id\": \"65d7023f31613750bb229838\"\r\n            }\r\n        ],\r\n        \"price\": 16500,\r\n        \"_id\": \"65d7015a31613750bb229820\"\r\n    },\r\n    \"coupon\": {\r\n        \"status\": true,\r\n        \"data\": {\r\n            \"_id\": \"65d6f000c45395c4641cd260\",\r\n            \"name\": \"ABC100\",\r\n            \"discount\": 100,\r\n            \"discountType\": \"fixed\"\r\n        }\r\n    },\r\n    \"user_info\": {\r\n        \"address\": \"none\",\r\n        \"city\": \"Dhaka\",\r\n        \"state\": \"none\",\r\n        \"postcode\": 1200,\r\n        \"country\": \"Bangladesh\",\r\n        \"phone\": \"01766409973\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/order/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"order",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order.getOrder",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cart\": {\r\n        \"products\": [\r\n            {\r\n                \"product\": \"65cf8e32ae3c6928ced68299\",\r\n                \"quantity\": 3,\r\n                \"price\": 3500,\r\n                \"name\": \"Nothing Earbuds\",\r\n                \"_id\": \"65d7015a31613750bb229821\"\r\n            },\r\n            {\r\n                \"product\": \"65cf8dc0ae3c6928ced6828e\",\r\n                \"quantity\": 5,\r\n                \"price\": 1200,\r\n                \"name\": \"Hoco W35\",\r\n                \"_id\": \"65d7023f31613750bb229838\"\r\n            }\r\n        ],\r\n        \"price\": 16500,\r\n        \"_id\": \"65d7015a31613750bb229820\"\r\n    },\r\n    \"coupon\": {\r\n        \"status\": true,\r\n        \"data\": {\r\n            \"_id\": \"65d6f000c45395c4641cd260\",\r\n            \"name\": \"ABC100\",\r\n            \"discount\": 100,\r\n            \"discountType\": \"fixed\"\r\n        }\r\n    },\r\n    \"user_info\": {\r\n        \"address\": \"none\",\r\n        \"city\": \"Dhaka\",\r\n        \"state\": \"none\",\r\n        \"postcode\": 1200,\r\n        \"country\": \"Bangladesh\",\r\n        \"phone\": \"01766409973\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/order/65d85a720abe05e9b6512a32",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"order",
+						"65d85a720abe05e9b6512a32"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order.getOrders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cart\": {\r\n        \"products\": [\r\n            {\r\n                \"product\": \"65cf8e32ae3c6928ced68299\",\r\n                \"quantity\": 3,\r\n                \"price\": 3500,\r\n                \"name\": \"Nothing Earbuds\",\r\n                \"_id\": \"65d7015a31613750bb229821\"\r\n            },\r\n            {\r\n                \"product\": \"65cf8dc0ae3c6928ced6828e\",\r\n                \"quantity\": 5,\r\n                \"price\": 1200,\r\n                \"name\": \"Hoco W35\",\r\n                \"_id\": \"65d7023f31613750bb229838\"\r\n            }\r\n        ],\r\n        \"price\": 16500,\r\n        \"_id\": \"65d7015a31613750bb229820\"\r\n    },\r\n    \"coupon\": {\r\n        \"status\": true,\r\n        \"data\": {\r\n            \"_id\": \"65d6f000c45395c4641cd260\",\r\n            \"name\": \"ABC100\",\r\n            \"discount\": 100,\r\n            \"discountType\": \"fixed\"\r\n        }\r\n    },\r\n    \"user_info\": {\r\n        \"address\": \"none\",\r\n        \"city\": \"Dhaka\",\r\n        \"state\": \"none\",\r\n        \"postcode\": 1200,\r\n        \"country\": \"Bangladesh\",\r\n        \"phone\": \"01766409973\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/order/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"order",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction.getTrx",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cart\": {\r\n        \"products\": [\r\n            {\r\n                \"product\": \"65cf8e32ae3c6928ced68299\",\r\n                \"quantity\": 3,\r\n                \"price\": 3500,\r\n                \"name\": \"Nothing Earbuds\",\r\n                \"_id\": \"65d7015a31613750bb229821\"\r\n            },\r\n            {\r\n                \"product\": \"65cf8dc0ae3c6928ced6828e\",\r\n                \"quantity\": 5,\r\n                \"price\": 1200,\r\n                \"name\": \"Hoco W35\",\r\n                \"_id\": \"65d7023f31613750bb229838\"\r\n            }\r\n        ],\r\n        \"price\": 16500,\r\n        \"_id\": \"65d7015a31613750bb229820\"\r\n    },\r\n    \"coupon\": {\r\n        \"status\": true,\r\n        \"data\": {\r\n            \"_id\": \"65d6f000c45395c4641cd260\",\r\n            \"name\": \"ABC100\",\r\n            \"discount\": 100,\r\n            \"discountType\": \"fixed\"\r\n        }\r\n    },\r\n    \"user_info\": {\r\n        \"address\": \"none\",\r\n        \"city\": \"Dhaka\",\r\n        \"state\": \"none\",\r\n        \"postcode\": 1200,\r\n        \"country\": \"Bangladesh\",\r\n        \"phone\": \"01766409973\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/transaction/65d85a720abe05e9b6512a33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"transaction",
+						"65d85a720abe05e9b6512a33"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction.getTransations",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNmNmI1N2I2MWQwZDk1MjFmMTgwYTQiLCJ1c2VybmFtZSI6Im5leW1hcl9qcl84Iiwicm9sZSI6ImFkbWluIiwicGhvdG8iOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWjhuNHIyQTZuRkVZbVpmaGlENWdJYTQ3R05LSmlGWDVkMWtEX191ZnVBZ0E9czk2LWMiLCJpYXQiOjE3MDgxMDA4NDksImV4cCI6MTcwODcwNTY0OX0.EjciwGAKWjeZN8-IUw0kqhXEM4KjN6m23zZfdff50Ug",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cart\": {\r\n        \"products\": [\r\n            {\r\n                \"product\": \"65cf8e32ae3c6928ced68299\",\r\n                \"quantity\": 3,\r\n                \"price\": 3500,\r\n                \"name\": \"Nothing Earbuds\",\r\n                \"_id\": \"65d7015a31613750bb229821\"\r\n            },\r\n            {\r\n                \"product\": \"65cf8dc0ae3c6928ced6828e\",\r\n                \"quantity\": 5,\r\n                \"price\": 1200,\r\n                \"name\": \"Hoco W35\",\r\n                \"_id\": \"65d7023f31613750bb229838\"\r\n            }\r\n        ],\r\n        \"price\": 16500,\r\n        \"_id\": \"65d7015a31613750bb229820\"\r\n    },\r\n    \"coupon\": {\r\n        \"status\": true,\r\n        \"data\": {\r\n            \"_id\": \"65d6f000c45395c4641cd260\",\r\n            \"name\": \"ABC100\",\r\n            \"discount\": 100,\r\n            \"discountType\": \"fixed\"\r\n        }\r\n    },\r\n    \"user_info\": {\r\n        \"address\": \"none\",\r\n        \"city\": \"Dhaka\",\r\n        \"state\": \"none\",\r\n        \"postcode\": 1200,\r\n        \"country\": \"Bangladesh\",\r\n        \"phone\": \"01766409973\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/api/transaction/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"api",
+						"transaction",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
