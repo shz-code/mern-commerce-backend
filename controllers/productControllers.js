@@ -200,6 +200,11 @@ module.exports.createComment = async (req, res) => {
   const profile = await Profile.findOne({ user: user });
   if (!profile) return res.status(400).send("Profile not found");
 
+  if (!profile.orderItems.includes(req.params.id)) {
+    return res
+      .status(403)
+      .send({ message: "You are not allowed to add review" });
+  }
   product.comments = [...product.comments, req.body];
   await product.save();
 
