@@ -95,7 +95,8 @@ module.exports.getProducts = async (req, res) => {
 module.exports.getProduct = async (req, res) => {
   const product = await Product.findById(req.params.id)
     .select({ photo: 0 })
-    .populate("category", "name");
+    .populate("category", "name")
+    .populate("comments.user", ["name", "photo"]);
   if (!product) return res.status(400).send("Product not found");
   return res.send(product);
 };
