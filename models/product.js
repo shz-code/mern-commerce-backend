@@ -19,6 +19,7 @@ const productCategory = Schema(
       contentType: String,
     },
     rating: { type: Number, default: 0 },
+    commentsCount: { type: Number, default: 0 },
     comments: [
       {
         user: {

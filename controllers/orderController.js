@@ -300,6 +300,7 @@ module.exports.getOrders = async (req, res) => {
       country: 1,
       status: 1,
     })
+    .sort({ _id: -1 })
     .populate("cart", ["price", "products"]);
   return res.send(order);
 };

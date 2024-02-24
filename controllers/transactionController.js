@@ -17,12 +17,14 @@ module.exports.getTrx = async (req, res) => {
 };
 
 module.exports.getTransactions = async (req, res) => {
-  const trx = await Transaction.find({ user: req.user._id }).select({
-    bank_tran_id: 0,
-    order: 0,
-    store_amount: 0,
-    updatedAt: 0,
-    user: 0,
-  });
+  const trx = await Transaction.find({ user: req.user._id })
+    .select({
+      bank_tran_id: 0,
+      order: 0,
+      store_amount: 0,
+      updatedAt: 0,
+      user: 0,
+    })
+    .sort({ _id: -1 });
   return res.send(trx);
 };

@@ -53,14 +53,15 @@ module.exports.createProduct = async (req, res) => {
 
 module.exports.getProducts = async (req, res) => {
   // Query String
-  const orderBy = req.query.order === "desc" ? -1 : 1;
   const sortBy = req.query.sort ? req.query.sort : "_id";
-  const limit = req.query.limit ? Number(req.query.limit) : 5;
+  const orderBy = req.query.order === "desc" ? -1 : 1;
+  const limit = req.query.limit ? Number(req.query.limit) : 2;
   const search = req.query.search ? req.query.search : "";
   const skip = Number(req.query.skip) || 0;
   const min = Number(req.query.min) || 1;
   const max = Number(req.query.max) || 50000;
   const category = req.query.category ? JSON.parse(req.query.category) : null;
+  const featured = req.query.featured ? true : false;
   let args = {};
 
   args["price"] = {
@@ -83,13 +84,25 @@ module.exports.getProducts = async (req, res) => {
     args = Object.assign({}, args, query);
   }
 
+  if (featured) {
+    args["$expr"] = {
+      $gte: [{ $subtract: ["$quantity", "$sold"] }, 1],
+    };
+  }
+
+  const productsCount = await Product.find();
+
   const products = await Product.find(args)
     .select({ photo: 0 })
     .sort({ [sortBy]: orderBy })
     .limit(limit)
     .skip(skip)
     .populate("category", "name");
-  return res.send(products);
+
+  return res.send({
+    products: products,
+    loadMore: limit < productsCount.length,
+  });
 };
 
 module.exports.getProduct = async (req, res) => {
@@ -195,7 +208,7 @@ module.exports.filterProducts = async (req, res) => {
 module.exports.createComment = async (req, res) => {
   const { user, text, rating } = req.body;
 
-  const product = await Product.findById(req.params.id).select({ photo: 0 });
+  let product = await Product.findById(req.params.id).select({ photo: 0 });
   if (!product) return res.status(400).send("Product not found");
 
   const profile = await Profile.findOne({ user: user });
@@ -206,8 +219,19 @@ module.exports.createComment = async (req, res) => {
       .status(403)
       .send({ message: "You are not allowed to add review" });
   }
-  product.comments = [...product.comments, req.body];
+
+  product.rating = (product.rating + rating) / 2;
+  product.commentsCount += 1;
+  product.comments = [
+    ...product.comments,
+    { ...req.body, createdAt: new Date().getTime() },
+  ];
   await product.save();
 
-  return res.send(product.comments);
+  product = await Product.findById(req.params.id)
+    .select({ photo: 0 })
+    .populate("category", "name")
+    .populate("comments.user", ["name", "photo"]);
+
+  return res.send({ data: product, message: "Review Added" });
 };
