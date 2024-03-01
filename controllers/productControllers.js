@@ -220,7 +220,8 @@ module.exports.createComment = async (req, res) => {
       .send({ message: "You are not allowed to add review" });
   }
 
-  product.rating = (product.rating + rating) / 2;
+  if (product.rating === 0) product.rating = rating;
+  else product.rating = (product.rating + rating) / 2;
   product.commentsCount += 1;
   product.comments = [
     ...product.comments,
